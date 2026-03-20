@@ -2,9 +2,8 @@
 import { Header } from "./header/index.js";
 import Footer from "./footer/index.js";
 
-export function Layout(content) {
+function Layout(content) {
   return `
-    ${Header()}
     <main id="page-content">
       ${content}
     </main>
@@ -12,9 +11,11 @@ export function Layout(content) {
 }
 
 export function renderLayout() {
-  document.getElementById("app").innerHTML = Layout("");
+  const app = document.getElementById("app");
 
-  document.body.insertAdjacentHTML("beforeend", Footer());
+  app.insertAdjacentHTML("beforebegin", Header());
+  app.innerHTML = Layout("");
+  app.insertAdjacentHTML("afterend", Footer());
 
   document.body.insertAdjacentHTML("beforeend", `
     <button id="js-btn-top" class="btn-top" aria-label="Voltar ao topo">

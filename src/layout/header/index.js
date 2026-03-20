@@ -4,15 +4,8 @@
 import { Icons, menuItems, downloadIcons, socialLinks } from "../../components/dados.js";
 
 
-const createLogoItem = (href = "/", showLabel = false) => {
-  return /*html*/ `
-    <a class="logo-link" href="${href}" aria-label="Ir para a página inicial">
-      ${Icons.logo}
-      ${showLabel ? `<span class="logo-link__name"></span>` : ""}
-    </a>
-  `
-}
-
+// header/index.js e footer/index.js — remover a função local e importar:
+import { createLogoItem  ,createSocialItem} from "../../components/ui.js";
 
 
 
@@ -20,7 +13,6 @@ const createLogoItem = (href = "/", showLabel = false) => {
 const createToggleMenu =()=>{
   return /*html*/ `
 
- 
       <button id="js-menu-toggle" type="button" class="nav__btn-toggle" aria-label="Abrir menu" aria-expanded="false">
         <span class="nav__icon--open">${Icons.hamburger}</span>
         <span class="nav__icon--close hidden">${Icons.close}</span>
@@ -28,8 +20,9 @@ const createToggleMenu =()=>{
     
   `
 }
-const createNavItem = ({ href, label, icon }, variant = "", iconVariant = "") => {
 
+
+  // ✅ Definidos uma única vez
   const variantClassMap = {
     mobile: "aside__link--mobile",
     desktop: "nav__desktop--links"
@@ -40,7 +33,8 @@ const createNavItem = ({ href, label, icon }, variant = "", iconVariant = "") =>
     desktopIcons: "nav__desktop--icons"
   };
 
-  return /*html*/`
+  const createNavItem = ({ href, label, icon }, variant = "", iconVariant = "") => {
+    return /*html*/`
     <li>
       <a class="${variantClassMap[variant] ?? ""}" href="${href}" data-link>
         <span class="${variantClassIcons[iconVariant] ?? ""}">
@@ -50,7 +44,8 @@ const createNavItem = ({ href, label, icon }, variant = "", iconVariant = "") =>
       </a>
     </li>
   `;
-};
+  };
+
  
 
 const createThemeToggle = () => {
@@ -79,15 +74,6 @@ const createAppIcons = () => {
 }
 
 
-const createSocialItem = ({ href, icons }) => {
-  return /*html */`
-  <li>
-    <a href="${href}" target="_blank" rel="noopener noreferrer">
-      ${Icons[icons] || ""}
-    </a>
-    </li>
-  `
-}
 
 export function Header() {
   const menuLinkDesktop = menuItems
@@ -102,7 +88,7 @@ export function Header() {
     <header  class="header-bar">
       <nav  class="nav-bar">
       <div class="nav__logo">${createLogoItem()}</div>
-      <div class="nav__btn-toggle">${createToggleMenu()}</div>
+  ${createToggleMenu()}
       <ul class="nav-desktop">${menuLinkDesktop}</ul>
       <div class="themeDesktop">${createThemeToggle()}</div>
       </nav>
@@ -129,14 +115,13 @@ export function Header() {
 
   <!-- Footer -->
 <!-- Footer -->
-<div class="mobile-footer">
 
+<div class="mobile-footer">
   <p class="mobile-footer__label">Baixe o app</p>
-  <div>
-     <div class="mobile-footer__btn mobile-footer__btn--android" data-link>
-       ${createAppIcons()}
-     </div>
-   <ul class="footer__social">${socialHTML}</ul>
+  <div class="mobile-footer__buttons">
+    ${createAppIcons()}
+  </div>
+  <ul class="footer__social">${socialHTML}</ul>
 </div>
 
 </aside>

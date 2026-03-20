@@ -1,6 +1,7 @@
 @import "reset.css";
 @import "root.css";
 @import "src/layout/style.css";
+@import "src/pages/pages.css";
 
 
 #app{

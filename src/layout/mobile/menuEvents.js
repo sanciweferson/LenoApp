@@ -1,3 +1,4 @@
+// src/layout/mobile/menuEvents.js
 import {
   setupMenuToggle,
   setupMenuStateOnLoad,
@@ -9,9 +10,8 @@ const MOBILE_BREAKPOINT = 768;
 
 const handleResize = () => {
   const isDesktop = window.innerWidth >= MOBILE_BREAKPOINT;
-
   if (isDesktop) {
-    closeSideMenu(); // fecha o menu mobile ao virar desktop
+    closeSideMenu();
   }
 };
 
@@ -25,7 +25,10 @@ export const initMenu = () => {
       setupMenuStateOnLoad();
       setupLinkClicks();
 
-      // fecha menu se passar de 768px
+      // fecha ao clicar no overlay 👈
+      document.getElementById("js-menu-overlay")
+        ?.addEventListener("click", closeSideMenu);
+
       handleResize();
       window.addEventListener("resize", handleResize);
 

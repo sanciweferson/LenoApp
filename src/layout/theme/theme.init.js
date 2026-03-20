@@ -4,6 +4,7 @@ import {
   setupSystemThemeObserver,
 } from "./theme.core.js"
 
+import { clearCache } from "../../core/cache.js"
 const setupThemeButtons = () => {
   const buttons = document.querySelectorAll(".nav__btn-theme")
   if (!buttons.length) return
@@ -34,5 +35,6 @@ export const initTheme = () => {
   setTimeout(() => {
     setupThemeButtons()
     setupSystemThemeObserver()
+    clearCache() // 👈 Limpa o cache para evitar problemas de renderização com temas
   }, 50)
 }

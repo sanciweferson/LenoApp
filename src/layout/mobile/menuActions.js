@@ -1,8 +1,9 @@
-// menuActions.js
+// src/layout/mobile/menuActions.js
 const getMenuElements = () => {
   return {
     btn: document.getElementById("js-menu-toggle"),
-    side: document.getElementById("js-nav-aside")
+    side: document.getElementById("js-nav-aside"),
+    overlay: document.getElementById("js-menu-overlay"),
   };
 };
 
@@ -43,7 +44,7 @@ const handleKeyboardFocus = (e) => {
 };
 
 export const openSideMenu = (isInitialLoad = false) => {
-  const { btn, side } = getMenuElements();
+  const { btn, side, overlay } = getMenuElements();
   if (!btn || !side) return;
 
   side.classList.add("open");
@@ -53,9 +54,10 @@ export const openSideMenu = (isInitialLoad = false) => {
   btn.setAttribute("aria-expanded", "true");
   btn.setAttribute("aria-label", "Fechar menu");
 
-  // troca ícones (hamburger -> close)
   btn.querySelector(".nav__icon--open")?.classList.add("hidden");
   btn.querySelector(".nav__icon--close")?.classList.remove("hidden");
+
+  overlay?.classList.add("open"); // 👈
 
   document.addEventListener("keydown", handleKeyboardFocus);
 
@@ -68,7 +70,7 @@ export const openSideMenu = (isInitialLoad = false) => {
 };
 
 export const closeSideMenu = () => {
-  const { btn, side } = getMenuElements();
+  const { btn, side, overlay } = getMenuElements();
   if (!btn || !side) return;
 
   if (side.contains(document.activeElement)) {
@@ -82,9 +84,10 @@ export const closeSideMenu = () => {
   btn.setAttribute("aria-expanded", "false");
   btn.setAttribute("aria-label", "Abrir menu");
 
-  // troca ícones (close -> hamburger)
   btn.querySelector(".nav__icon--open")?.classList.remove("hidden");
   btn.querySelector(".nav__icon--close")?.classList.add("hidden");
+
+  overlay?.classList.remove("open"); // 👈
 
   document.removeEventListener("keydown", handleKeyboardFocus);
   localStorage.setItem("menuOpen", "false");

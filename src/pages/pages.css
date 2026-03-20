@@ -1,0 +1,224 @@
+/* =========================================================
+   PAGE BASE — FAQ, Termos, Privacidade e Contato
+========================================================= */
+.page {
+  padding: 2rem 1.5rem 4rem;
+  min-height: 60vh;
+}
+
+.page__container {
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+.page__title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(1.8rem, 4vw, 2.75rem);
+  font-weight: 800;
+  color: var(--foreground);
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+}
+
+.page__subtitle {
+  font-size: 1rem;
+  color: var(--muted-foreground);
+  margin-bottom: 2.5rem;
+}
+
+/* =========================================================
+   TERMOS E PRIVACIDADE
+========================================================= */
+.page__content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.page__section-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--foreground);
+  margin-bottom: 0.4rem;
+}
+
+.page__content p {
+  font-size: 0.95rem;
+  color: var(--muted-foreground);
+  line-height: 1.75;
+}
+
+.page__content a {
+  color: var(--primary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* =========================================================
+   FAQ
+========================================================= */
+.faq__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.faq__item {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+
+.faq__item[open] {
+  border-color: var(--primary);
+}
+
+.faq__question {
+  list-style: none;
+  padding: 1rem 1.25rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--foreground);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  transition: background 0.15s;
+}
+
+.faq__question:hover {
+  background: var(--accent);
+}
+
+.faq__question::after {
+  content: '+';
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: var(--muted-foreground);
+  flex-shrink: 0;
+  transition: transform 0.2s;
+}
+
+.faq__item[open] .faq__question::after {
+  transform: rotate(45deg);
+}
+
+.faq__answer {
+  padding: 0.85rem 1.25rem 1rem;
+  font-size: 0.9rem;
+  color: var(--muted-foreground);
+  line-height: 1.7;
+  border-top: 1px solid var(--border);
+}
+
+/* =========================================================
+   CONTATO
+========================================================= */
+.contact__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+}
+
+.contact__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.contact__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.contact__label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+.contact__input {
+  padding: 0.7rem 1rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--foreground);
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.contact__input:focus {
+  border-color: var(--primary);
+}
+
+.contact__input::placeholder {
+  color: var(--muted-foreground);
+}
+
+.contact__textarea {
+  resize: vertical;
+  min-height: 130px;
+}
+
+.contact__btn {
+  padding: 0.75rem 1.5rem;
+  background: var(--primary);
+  color: var(--primary-foreground);
+  border: none;
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  align-self: flex-start;
+}
+
+.contact__btn:hover {
+  opacity: 0.85;
+}
+
+.contact__info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.contact__info-item {
+  padding: 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--card);
+}
+
+.contact__info-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted-foreground);
+  margin-bottom: 0.35rem;
+}
+
+.contact__info-item p {
+  font-size: 0.9rem;
+  color: var(--foreground);
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+@media (min-width: 640px) {
+  .page {
+    padding: 3rem 2rem 5rem;
+  }
+
+  .contact__grid {
+    grid-template-columns: 1fr 320px;
+  }
+}
